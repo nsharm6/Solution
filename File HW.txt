@@ -1,0 +1,65 @@
+#include <iostream>
+#include <string>
+#include <fstream>
+
+int main()
+{
+	std::cout << "Enter exisiting file name: " << std::flush;
+	std::string fileName;
+	std::getline(std::cin, fileName);
+	std::ifstream originalFile(fileName);
+	if (!originalFile.is_open())
+	{
+		std::cout << "Error: File does not exist or cannot be opened.\n";
+		std::cin.get(); // pause
+		return 0;
+	}
+	else
+	{
+	        std::string text, line;
+		std::cout << "Enter new file name: " << std::flush;
+		std::getline(std::cin, fileName);
+		std::ifstream file(fileName);
+		if (file.is_open())
+		{
+		        file.close();
+			std::cout << "File name exists. Do you wish to append (y or n): " <<
+                        std::flush;
+			char append;
+			std::cin >> append;
+			if (append == 'n')
+			{
+				std::cout << "Operation canceled by user.\n";
+				std::cin.get(); // pause
+			}
+			else
+			{
+			    std::ofstream fileToAppend(fileName, std::ios::app);
+                            text += "\n";
+			    while (std::getline(originalFile, line))
+			    {
+			        text += line + "\n";
+			    }
+			    fileToAppend << text;
+			    fileToAppend.close();
+			    std::cout << "Finished appending to file.\n";
+			}
+		}
+		else
+		{
+		    file.close();
+		    std::ofstream newFile;
+		    newFile.open(fileName);
+		    while (std::getline(originalFile, line))
+		    {
+		        text += line + "\n";
+		    }
+		    newFile << text;
+		    newFile.close();
+		    std::cout << "Finished copying to file\n";
+		}
+	}
+	originalFile.close();
+	std::cin.get(); // pause
+	return 0;
+}
