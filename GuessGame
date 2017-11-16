@@ -1,0 +1,40 @@
+// 
+#include <iostream>
+#include <cstdlib>
+#include <ctime>
+#include<string>
+#include<iomanip> 
+
+//using namespace std; // if you need it remove the starting comment sign
+void playGame();  // You need to declare between the space, if you have any other function rather than main function
+int main( ) {
+       playGame();
+       system ("pause");
+       return 0;
+}
+ 
+/* Play a number guessing game */
+void playGame() {
+       // complete this function body
+        std::srand(std::time(0));
+    int lower, upper, guess;
+     std::cout << "Let's Start the Guess Game ";
+    std::cout << "Enter lower limit: ";
+    std::cin >> lower;
+    std::cout << "Enter upper limit: ";
+    std::cin >> upper;
+    int random_number = lower + std::rand() % ((upper + 1) - lower);
+ 
+    do
+    {
+        std::cout << "Guess what number I have: ";
+        std::cin >> guess;
+        if (guess > random_number)
+            std::cout << "Your guess is too high\n";
+        else if (guess < random_number)
+            std::cout << "Your guess is too low\n";
+        else
+            std::cout << "You got it!\n";
+    } while (guess != random_number);
+ 
+}
