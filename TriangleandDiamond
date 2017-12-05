@@ -1,0 +1,145 @@
+#include <iostream>
+
+using namespace std;
+
+
+
+void instructions()
+{
+
+    cout<<"This Program will display the pattern in the form of a Triangle or Dimand."<<endl;
+
+    cout<<"Pattern will be drawn from the character that will be entered by the user."<<endl;
+
+    cout<<"Select option 1 to draw a Triangle."<<endl;
+
+    cout<<"Select option 2 to draw a Diamond."<<endl;
+
+    cout<<"Select option 3 to quit."<<endl;
+
+}
+
+
+
+int menu()
+{
+    int ch;
+    cout<<"\nEnter choice 1:Triangle"<<endl;
+    cout<<" 2:Dimond"<<endl;
+    cout<<" 3:Quit"<<endl;
+    cin>>ch;
+    return ch;
+}
+
+
+
+void draw_bottom(int size, char c)
+{
+    int i,space,j;
+    for(i=size;i>=1;--i)
+  {
+
+    for(space=0;space<size-i;++space)
+        cout<<" ";
+    for(j=i;j<=2*i-1;++j)
+        cout<<c<<" ";
+    for(j=0;j<i-1;++j)
+        cout<<c<<" ";
+    cout<<endl;
+  }
+
+}
+
+
+
+void draw_triangle(int size, char c)
+{
+  int i,sp,k;
+  for(i=1;i<=size;++i)
+{
+
+  for(sp=1;sp<=size-i;++sp)// for space 
+
+  {
+      cout<<" ";
+  }
+
+while(k!=2*i-1)
+{
+    cout<<c<<" ";
+    ++k;
+}
+
+k=0;
+cout<<"\n";
+
+}
+
+}
+
+
+
+int get_size()
+{
+  int rows;
+  cout<<"Enter the size of pattern: ";
+  cin>>rows;
+  return rows;
+}
+
+
+
+char get_char()
+{
+  char c;
+  cout<<"Enter the character with which pattern will be drawn: ";
+  cin>>c;
+  return c;
+}
+void draw_diamond(int size, char c)
+{
+  draw_triangle(size,c);
+  draw_bottom(size,c);
+}
+
+
+
+void draw_shape(int choice)
+{
+
+  int size = get_size();
+  char c = get_char();
+  if (choice == 1)
+  {
+    draw_triangle(size,c);
+  }
+
+  else if (choice == 2)
+  {
+    draw_diamond(size,c);
+  }
+
+}
+
+
+
+int main()
+
+{
+  instructions();
+  while(1)
+  {
+  int ch=menu();
+  if (ch==1 || ch == 2) 
+  draw_shape(ch);
+  else if (ch==3) break;
+  else 
+  {
+    cout<<"\n Invalid Choice\n\n\n";
+  }
+
+ }
+
+return 0;
+
+}
